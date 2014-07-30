@@ -1,55 +1,119 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
 	<title>LM3914 Calculator</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+	<div class="site-wrapper">
+		<div class="site-wrapper-inner">
+			<div class="cover-container">
+				<div class="clear">
+					<div class="inner">
+						<h3 class="masthead-brand">
+							<span style="color:#3DFF23;">LM</span>
+							<span style="color:#F3F722">39</span>
+							<span style="color:#FF4949;">14</span>
+							Calculator
+						</h3>
+						<ul class="nav masthead-nav">
+							<li class="active"><a href="#">Home</a>
+							</li>
+							<li><a href="#">Features</a>
+							</li>
+							<li><a href="#">Contact</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="inner" style="">
+					<!-- <h1 class="cover-heading">General Schematic.</h1> -->
+					<div class="row">
+						<div class="col-md-6">
+							<img src="img/LM3914-a.png" style="width:100%;" alt="General LM3914 Schematic">
+							<h4 class="cover-heading">General Schematic.</h4>
+						</div>
+						<div class="col-md-6">
+							<input type="text" class="form-control" name="vcc" value="15" placeholder="VCC (3V - 18V)">
+							<input type="text" class="form-control" name="vHigh" value="4.2" placeholder="Max Voltage (VCC - 1.25V)">
+							<input type="text" class="form-control" name="vLow" value="3" placeholder="Min Voltage ( > 0 )">
+							<input type="text" class="form-control" name="iLED" value="20" placeholder="LED current in (mA)">
+							Voltage Dived Signal: <input type="checkbox" class="" name="vDiv" value="" placeholder="Voltage Divider" checked>
+							<input type="text" class="form-control" name="animSpeed" value="" placeholder="Animation Speed (in seconds)">
+							<input type="text" class="form-control" name="intRes" value="10.8" placeholder="Resistance From RHI to RLO (in kOhms)">
 
+							<br>
+							<p class="lead">
+								<button class="btn btn-md btn-default" id="submit">Get Values</button>
+								<button class="btn btn-md btn-default">Reset</button>
+							</p>
+						</div>
+					</div>
 
-<script type="text/javascript" charset="utf-8" async defer>
-	var iLED = 12.5; // 20 mA
-	var vHigh = 5; // Voltage High
-	var vLow = 1.170; // Voltage Low
-	var animSpeed = 2000; // 2000 mSec or 2 sec
-	var vDiv = 10000; // 10k Ohms
-	var cap = 47; // 47uF
-	var intResReal = 10800; // 10k8 Ohms
-	var intResTyp = 12000; // 12k Ohms
-	var usingVDivider = true;
+					<div class="row">
+						<div class="col-md-12" id="info">
 
-	function getResistorValues(current, vH, vL, intRes, vDiv) {
-		var refout = function(R1, R2) { return (1.25*(1+(R2/R1))); }
-		if(vDiv == true) {
-			vH /= 2; vL /= 2;
-		}
-		// Datasheet Equaton for Current
-		// iled = 12.5/R1 -> R1 = 12.5/iLED
-		current /= 1000; // Now it is in Amps
-		var ResI = 12.5/current;
-		// Datasheet Equation for Regulator
-		// V = (1.25*(1+(ResHigh/ResI))) -> ResHigh = (ResI/5)*(4V-5)
-		var ResHigh = (ResI/5)*((4*vH)-5);
-		// Voltage Divider
-		// ResLow = intRes*(1/((vH/vL)-1))
-		var ResLow = intRes*(1/((vH/vL)-1));
-		console.log("refout:");
-		console.log(refout(ResHigh, ResI));
-		return {
-			ResI: ResI,
-			ResLow: ResLow,
-			ResHigh: ResHigh,
-		};
-	}
-	function getAnimCapValue(current, vH, vL, intRes) {
-		// Datasheet Equaton for Current
-		// iled = 12.5/R1 -> R1 = 12.5/iLED
-		var cap = 0;
-		return cap;
-	}
+						</div>
+					</div>
 
-	console.log(getResistorValues(iLED, vHigh, vLow, intResReal, usingVDivider));
+					<div class="row">
+						<div class="col-md-12">
+							<h3 class="cover-heading">Information</h3>
+						</div>
+						<div class="col-md-2">
+							<p>Tips</p>
+						</div>
+						<div class="col-md-2">
+							<p>Tips</p>
+						</div>
+						<div class="col-md-2">
+							<p>Tips</p>
+						</div>
+						<div class="col-md-2">
+							<p>Tips</p>
+						</div>
+						<div class="col-md-2">
+							<p>Tips</p>
+						</div>
+						<div class="col-md-2">
+							<p>Tips</p>
+						</div>
+					</div>
 
-</script>
-
+					<!--
+					<p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
+					<p class="lead">
+						<a href="#" class="btn btn-lg btn-default">Learn more</a>
+					</p>
+					-->
+				</div>
+				<div class="mastfoot">
+					<div class="inner">
+						<p>
+						Version 0.1
+						&bullet;
+						<a href="http://kammce.io" target="_blank">Khalil Estell</a>
+						&bullet;
+						<a href="https://github.com/kammce/LM3914-Calculator" target="_blank">GitHub</a>
+						&bullet;
+						<a href="http://kammce.io" target="_blank">Examples</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>
